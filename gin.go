@@ -13,8 +13,8 @@ import (
 	"path"
 	"sync"
 
-	"github.com/gin-gonic/gin/internal/bytesconv"
-	"github.com/gin-gonic/gin/render"
+	"github.com/Ruscigno/Gin/internal/bytesconv"
+	"github.com/Ruscigno/Gin/render"
 )
 
 const defaultMultipartMemory = 32 << 20 // 32 MB
