@@ -4,14 +4,8 @@
 #     args: ["go", "build", "."]
 steps:
   - name: "golangci/golangci-lint:latest"
-    args:
-      [
-        "golangci-lint",
-        "run",
-        "-c",
-        "build/lint-ci-config.yaml",
-        "./internal/...",
-      ]
+    entrypoint: "golangci-lint"
+    args: ["run", "-c", "build/lint-ci-config.yaml", "./internal/..."]
     env: ["PROJECT_ROOT=github.com/vendasta/Gin", "GO111MODULE=on"]
     id: "lint"
 #   - name: "golang"
