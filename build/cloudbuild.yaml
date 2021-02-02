@@ -1,23 +1,27 @@
+# Build the module.
 steps:
-  - name: "golangci/golangci-lint:latest-alpine"
-    args: ["run", "-c", "build/lint-ci-config.yaml", "./internal/..."]
-    env: ["PROJECT_ROOT=github.com/vendasta/Gin", "GO111MODULE=on"]
-    id: "lint"
-  - name: "golang"
-    args: ["go", "build", "-o", "/workspace/go-server", "./server"]
-    waitFor: ["lint"]
-    id: "go-install"
-  - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
-        "build",
-        "--file=./mscli-Dockerfile",
-        "--tag=gcr.io/$PROJECT_ID/Gin:$BUILD_ID",
-        ".",
-      ]
-    waitFor: ["go-install"]
-    id: "build-container"
-images: ["gcr.io/$PROJECT_ID/Gin:$BUILD_ID"]
-tags:
-  - Gin
-timeout: 1200s
+  - name: golang
+    args: ["go", "build", "."]
+# steps:
+#   - name: "golangci/golangci-lint:latest-alpine"
+#     args: ["run", "-c", "build/lint-ci-config.yaml", "./internal/..."]
+#     env: ["PROJECT_ROOT=github.com/vendasta/Gin", "GO111MODULE=on"]
+#     id: "lint"
+#   - name: "golang"
+#     args: ["go", "build", "-o", "/workspace/go-server", "./server"]
+#     waitFor: ["lint"]
+#     id: "go-install"
+#   - name: "gcr.io/cloud-builders/docker"
+#     args:
+#       [
+#         "build",
+#         "--file=./mscli-Dockerfile",
+#         "--tag=gcr.io/$PROJECT_ID/Gin:$BUILD_ID",
+#         ".",
+#       ]
+#     waitFor: ["go-install"]
+#     id: "build-container"
+# images: ["gcr.io/$PROJECT_ID/Gin:$BUILD_ID"]
+# tags:
+#   - Gin
+# timeout: 1200s
