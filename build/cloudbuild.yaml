@@ -1,12 +1,12 @@
 # Build the module.
-steps:
-  - name: golang
-    args: ["go", "build", "."]
 # steps:
-#   - name: "golangci/golangci-lint:latest-alpine"
-#     args: ["run", "-c", "build/lint-ci-config.yaml", "./internal/..."]
-#     env: ["PROJECT_ROOT=github.com/vendasta/Gin", "GO111MODULE=on"]
-#     id: "lint"
+#   - name: golang
+#     args: ["go", "build", "."]
+steps:
+  - name: "golangci/golangci-lint:latest-alpine"
+    args: ["run", "-c", "build/lint-ci-config.yaml", "./internal/..."]
+    env: ["PROJECT_ROOT=github.com/vendasta/Gin", "GO111MODULE=on"]
+    id: "lint"
 #   - name: "golang"
 #     args: ["go", "build", "-o", "/workspace/go-server", "./server"]
 #     waitFor: ["lint"]
